@@ -1,0 +1,16 @@
+SELECT
+[1] AS not_yet_started,
+[2] AS in_progress,
+[3] AS completed,
+[4] AS on_hold,
+[1] + [2] + [3] + [4] AS total,
+CASE WHEN ([1] + [2] + [3] + [4]) = 0
+THEN 0
+ELSE ROUND((CAST([3] AS float) * 100) / ([1] + [2] + [3] + [4]),2)
+END
+AS completed_percentage,
+milestone_id
+FROM 
+(SELECT status_id, milestone_id FROM tbl_tasks) AS source
+PIVOT
+(COUNT(status_id) FOR status_id IN ([1], [2], [3], [4])) AS pivot_table

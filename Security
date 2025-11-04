@@ -1,0 +1,4 @@
+Allow specific view to be only viewed by specific Login
+
+REVOKE SELECT ON OBJECT::[schema].[view/table] FROM PUBLIC;
+GRANT SELECT ON OBJECT::[schema].[view/table] TO employee_browser;

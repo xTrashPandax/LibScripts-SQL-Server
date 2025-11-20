@@ -1,0 +1,21 @@
+Scalar Function
+
+CREATE FUNCTION dbo.CalculateTotalSales (@ProductID INT)
+    RETURNS MONEY
+    AS
+    BEGIN
+        DECLARE @TotalSales MONEY;
+        SELECT @TotalSales = SUM(OrderQty * UnitPrice)
+        FROM Sales.SalesOrderDetail
+        WHERE ProductID = @ProductID;
+        RETURN @TotalSales;
+    END;
+
+
+ALTER FUNCTION fnTksActualOvertimeClassificationPivot(@DateFrom AS Date, @DateTo AS Date)
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT * FROM mytable
+);
